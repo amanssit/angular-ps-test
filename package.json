@@ -5,13 +5,14 @@
     "start:heroku": "node dist/server",
     "postinstall": "npm run build:ssr",
     "ng": "ng",
-   
+    "start": "ng serve",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev:ssr": "ng run angular-ps-test:serve-ssr",
     "serve:ssr": "node dist/angular-ps-test/server/main.js",
-    "build:ssr": "ng build --prod && ng run angular-ps-test:server:production",
+    "build:ssr": "ng build --prod",
     "prerender": "ng run angular-ps-test:prerender"
   },
   "private": true,
