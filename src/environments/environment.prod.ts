@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  newsApi: 'https://hn.algolia.com/api'
 };

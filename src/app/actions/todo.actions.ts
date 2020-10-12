@@ -7,7 +7,7 @@ export class ActionParent implements Action {
 }
 
 export class TodoAdd implements ActionParent {
-    type: TodoActionTypes.Add;
+    type = TodoActionTypes.Add;
 
     constructor(public payload: any) { }
 

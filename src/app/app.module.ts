@@ -8,6 +8,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { TodoReducer } from './reducers/todo.reducer';
+import { AgGridModule } from 'ag-grid-angular';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { TodoReducer } from './reducers/todo.reducer';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
+    AgGridModule.withComponents([]),
     StoreModule.forRoot({ todos: TodoReducer }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
