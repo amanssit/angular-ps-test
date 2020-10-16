@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  newsApi: 'https://hn.algolia.com/api'
+  newsApi: 'https://hn.algolia.com/api/v1/'
 };
 
 /*

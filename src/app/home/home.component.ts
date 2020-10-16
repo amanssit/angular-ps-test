@@ -1,3 +1,4 @@
+import { NewsService } from './../services/news/news.service';
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../models/Todo';
 import { Observable } from 'rxjs';
@@ -10,26 +11,39 @@ import { select, Store } from '@ngrx/store';
 })
 export class HomeComponent implements OnInit {
   todos: any;
-  title = 'my-app';
-
-  columnDefs = [
-    { field: 'make' },
-    { field: 'model' },
-    { field: 'price' }
-  ];
-
-  rowData = [
-    { make: 'Toyota', model: 'Celica', price: 35000 },
-    { make: 'Ford', model: 'Mondeo', price: 32000 },
-    { make: 'Porsche', model: 'Boxter', price: 72000 }
-  ];
-  constructor(private store: Store<{ todos: Todo[] }>) {
+  params: any = { tags: 'front_page' };
+  newsList: any = [];
+  page: any = 0;
+  hitsPerPage: any = 20;
+  numberOfPages: any;
+  constructor(private store: Store<{ todos: Todo[] }>, private newsService: NewsService) {
     store.pipe(select('todos')).subscribe(values => {
       this.todos = values;
     });
   }
 
   ngOnInit(): void {
+    this.getNews();
+  }
+
+
+  getNews() {
+    this.params.page = this.page;
+    this.params.hitsPerPage = this.hitsPerPage;
+    this.newsService.getNews(this.params).subscribe(news => {
+      this.newsList = news;
+      this.numberOfPages = news.nbPages;
+    })
+  }
+
+  nextPage() {
+    this.page += 1;
+    this.getNews();
+  }
+
+  backPage() {
+    this.page -= 1;
+    this.getNews();
   }
 
 }

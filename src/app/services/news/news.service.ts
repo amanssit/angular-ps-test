@@ -11,10 +11,11 @@ export class NewsService {
 
   url: any;
   constructor(private http: HttpClient) {
-    this.url = environment.newsApi;
+    this.url = `${environment.newsApi}/search?`;
   }
 
-  getNews(user): Observable<any> {
-    return this.http.get(`${this.url}/register`, user);
+  getNews(params): Observable<any> {
+    let queryStringData = new URLSearchParams(params).toString();
+    return this.http.get(`${this.url}${queryStringData}`);
   }
 }

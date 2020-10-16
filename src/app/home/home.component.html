@@ -4,7 +4,21 @@
             {{todo.title}}
         </li>
     </ul>
-    <ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-alpine" [rowData]="rowData"
-        [columnDefs]="columnDefs">
-    </ag-grid-angular>
+    <table border="1">
+        <tr>
+            <th>Comments</th>
+            <th>Vote Count</th>
+            <th>UpVote</th>
+            <th>News Details</th>
+        </tr>
+        <tr *ngFor="let news of newsList.hits">
+            <td>{{news.num_comments}}</td>
+            <td>{{news.points}}</td>
+            <td>{{news.num_comments}}</td>
+            <td>{{news.title}}</td>
+        </tr>
+    </table>
+<div>
+    <a *ngIf="page>0" (click)="backPage()" href="javascript:void();">Previous</a> {{page}}/{{numberOfPages}} <a *ngIf="page<numberOfPages-1" (click)="nextPage()" href="javascript:void();">Next</a>
+</div>
 </div>

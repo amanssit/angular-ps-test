@@ -1,3 +1,5 @@
+import { NewsService } from './services/news/news.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -19,11 +21,12 @@ import { AgGridModule } from 'ag-grid-angular';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
+    HttpClientModule,
     AgGridModule.withComponents([]),
     StoreModule.forRoot({ todos: TodoReducer }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [NewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
